@@ -20,20 +20,20 @@ module TimeAgoInWords
   #
   # @note Inspired from http://stackoverflow.com/a/4136485/511069
   def ago_in_words
-    return 'a very very long time ago' if self.year < 1800
+    return 'hace mucho mucho tiempo' if self.year < 1800
     secs = Time.now - self
-    return 'just now' if secs > -1 && secs < 1
+    return 'ahora!' if secs > -1 && secs < 1
     return '' if secs <= -1
     pair = ago_in_words_pair(secs)
     ary = ago_in_words_singularize(pair)
-    ary.size == 0 ? '' : ary.join(' and ') << ' ago'
+    ary.size == 0 ? '' : 'hace' << ary.join(' y ')  
   end
 
   private
 
   # @private
   def ago_in_words_pair(secs)
-    [[60, :seconds], [60, :minutes], [24, :hours], [100_000, :days]].map{ |count, name|
+    [[60, :segundos], [60, :minutos], [24, :horas], [100_000, :dias]].map{ |count, name|
       if secs > 0
         secs, n = secs.divmod(count)
         "#{n.to_i} #{name}"

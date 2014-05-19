@@ -26,7 +26,7 @@ module TimeAgoInWords
     return '' if secs <= -1
     pair = ago_in_words_pair(secs)
     ary = ago_in_words_singularize(pair)
-    ary.size == 0 ? '' : 'hace' << ary.join(' y ')  
+    ary.size == 0 ? '' : 'hace ' << ary.join(' y ')  
   end
 
   private
